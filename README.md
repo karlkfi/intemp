@@ -25,14 +25,13 @@ curl -o- https://raw.githubusercontent.com/karlkfi/intemp/v1.0.0/install.sh | ba
 ## Usage
 
 ```
-intemp.sh <command> [arg1 [arg2...]]
+intemp.sh [-t prefix] "<command>"
 ```
 
 Example (install intemp using intemp):
 
 ```
-$ myfunc(){ git clone https://github.com/karlkfi/intemp . && make install; }
-$ intemp.sh -t intemp myfunc
+intemp.sh -t intemp "git clone https://github.com/karlkfi/intemp . && make install"
 ```
 
 

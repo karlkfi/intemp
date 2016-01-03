@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # Install intemp from the internet
-# Usage: curl -o- https://raw.githubusercontent.com/karlkfi/intemp/v1.0.0/install.sh | bash
+# Usage: install.sh [version]
+# Alt Usage: curl -o- https://raw.githubusercontent.com/karlkfi/intemp/v1.0.0/install.sh | bash
 # Requires: make, git
 
 set -o errexit
@@ -20,4 +21,4 @@ function install {
   make install
 }
 
-curl -o- https://raw.githubusercontent.com/karlkfi/intemp/master/intemp.sh | bash -- -o 'intemp' install ${version}
+curl -o- https://raw.githubusercontent.com/karlkfi/intemp/master/intemp.sh | bash -s -- -t 'intemp' "install ${version}"

@@ -2,19 +2,20 @@
 
 # Install intemp from the internet
 # Usage: install.sh [version]
-# Alt Usage: curl -o- https://raw.githubusercontent.com/karlkfi/intemp/v1.0.0/install.sh | bash
-# Requires: make, git
+# Alt Usage: curl -o- https://raw.githubusercontent.com/karlkfi/intemp/master/install.sh | bash
+# Requires: curl
 
 set -o errexit
 set -o nounset
 set -o pipefail
 
-version=${1:-}
+prefix="/usr/local/bin"
 
-curl -o- https://raw.githubusercontent.com/karlkfi/intemp/master/intemp.sh | bash -s -- -t 'intemp' "
-  version='${version:-}' &&
-  git clone https://github.com/karlkfi/intemp . &&
-  [ -z \"\${version}\" ] && version=\$(git describe --abbrev=0 --tags);
-  git checkout \${version} &&
-  make install
-"
+version=${1:-}
+if [ -z "${version}" ]; then
+  version=$(curl -s https://api.github.com/repos/karlkfi/intemp/releases/latest | grep 'tag_name' | cut -d\" -f4)
+fi
+
+echo "Installing intemp ${version} -> ${prefix}/intemp.sh"
+curl -o- "https://raw.githubusercontent.com/karlkfi/intemp/${version}/intemp.sh" > "${prefix}/intemp.sh"
+chmod a+x "${prefix}/intemp.sh"

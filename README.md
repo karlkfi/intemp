@@ -19,7 +19,7 @@ make install
 or
 
 ```
-curl -o- https://raw.githubusercontent.com/karlkfi/intemp/v1.0.0/install.sh | bash
+curl -o- https://raw.githubusercontent.com/karlkfi/intemp/master/install.sh | bash
 ```
 
 ## Usage

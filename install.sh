@@ -11,14 +11,10 @@ set -o pipefail
 
 version=${1:-}
 
-function install {
-  local version=${1:-}
-  git clone https://github.com/karlkfi/intemp .
-  if [ -z "version" ]; then
-    version=$(git describe --abbrev=0 --tags)
-  fi
-  git checkout ${version}
+curl -o- https://raw.githubusercontent.com/karlkfi/intemp/master/intemp.sh | bash -s -- -t 'intemp' "
+  version='${version:-}' &&
+  git clone https://github.com/karlkfi/intemp . &&
+  [ -z \"\${version}\" ] && version=\$(git describe --abbrev=0 --tags);
+  git checkout \${version} &&
   make install
-}
-
-curl -o- https://raw.githubusercontent.com/karlkfi/intemp/master/intemp.sh | bash -s -- -t 'intemp' "install ${version}"
+"

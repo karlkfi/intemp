@@ -23,7 +23,7 @@ fi
 cmd="$1"
 [ -z "${cmd}" ] && echo "No command supplied" >&2 && exit 1
 
-workspace=$(mktemp -d "${TMPDIR}/${prefix}.XXXXXX")
+workspace=$(mktemp -d "${TMPDIR:-/tmp}/${prefix}.XXXXXX")
 echo "Workspace created: ${workspace}" 1>&2
 
 cleanup() {
